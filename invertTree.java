@@ -40,3 +40,43 @@ public class Solution {
         return root;
     }
 }
+
+//breadth-first traversal(from discussion).
+//use a queue. at first, only root is in the queue, inverse its left child and right child and put them into the queue. Each time polling
+//a node, inverse its left and right child until the queue is empty.
+//Time complexity: O(n)
+//Space complexity: O(n)
+ /* Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.offer(root);
+        
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            TreeNode left = node.left;
+            node.left = node.right;
+            node.right = left;
+            
+            if (node.left != null) {
+                q.offer(node.left);
+            }
+            
+            if (node.right != null) {
+                q.offer(node.right);
+            }
+        }
+        
+        return root;
+    }
+}
