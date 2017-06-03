@@ -39,3 +39,35 @@ public class Solution {
         return head;
     }
 }
+
+
+//modified after checking the leetcode discussion. Only one pointer needed and no corner cases needed.
+//beats 17.8%
+//Time Complexity: O(n)
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode list = head;
+        
+        while (list != null) {
+            if (list.next == null) {
+                break;
+            }
+            
+            if (list.val == list.next.val) {
+                list.next = list.next.next;
+            } else {
+                list = list.next;
+            }
+        }
+        
+        return head;
+    }
+}
