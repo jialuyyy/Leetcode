@@ -30,3 +30,25 @@ public class Solution {
         return i + 1;
     }
 }
+
+//modified: the corner case can be removed
+//beats 65.48%
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return 0;
+        
+        int i = 0;
+        int j = 0;
+        
+        while (j < nums.length) {
+            if (nums[j] != nums[i]) {
+                nums[++i] = nums[j++];
+            } else {
+                j++;
+            }
+        }
+        
+        return i + 1;
+    }
+}
