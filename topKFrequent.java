@@ -16,8 +16,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 
 //Time Complexity: 
 //O(n):iterate over the nums array to put them into the hashMap , n is the length of the array
-//O(klog(n)): priorityQueue
-//O(klog(n)): priorityQueue
+//O(nlog(k)): priorityQueue
 
 public class Solution {
     class Pair {
