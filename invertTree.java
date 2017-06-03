@@ -13,6 +13,10 @@ to
 9   6 3   1 */
 
 //use recursion
+//beats 29.31%
+//Time Complexity: O(n), as every node will be visited once.
+//Space Complexity: O(n), if the tree is completely unbalanced.
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
