@@ -1,3 +1,10 @@
+/*Given a sorted linked list, delete all duplicates such that each element appear only once.
+
+For example,
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.*/
+
+
 //thoughts: two pointers - prev pointer used to connect to the different values; cur pointer used to iterate over the list
 //Time Complexity: O(n)
 //beats 17.80%
