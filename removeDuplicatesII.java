@@ -37,7 +37,7 @@ public class Solution {
     }
 }
 
-//modified after checking the discussion of leetcode: similar method, but may look more clear than than mine
+//modified after checking the discussion of leetcode: similar method, but may look more clear than mine
 //beats 8.56%
 //time complexity: O(n)
 public class Solution {
