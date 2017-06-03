@@ -36,3 +36,37 @@ public class Solution {
         return i + 1;
     }
 }
+
+//modified: similar method, but may more clear than the previous one
+//beats 8.56%
+//time complexity: O(n)
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums == null) {
+            return 0;
+        }
+        
+        if (nums.length < 2) {
+            return nums.length;
+        }
+        
+        int i = 1;
+        int j = 1;
+        int count = 1;
+        
+        while (j < nums.length) {
+            if (nums[j] != nums[j - 1]) {
+                nums[i++] = nums[j];
+                count = 1;
+            } else {
+                if (count < 2) {
+                    nums[i++] = nums[j];
+                    count++;
+                }
+            }
+            j++;
+        }
+        
+        return i;
+    }
+}
