@@ -66,6 +66,42 @@ public class Solution {
     }
 }
 
+//Updates: beats 49.97%, same method as previous one. No need to create an inner class, just put the Map.Entry into the priority queue
+public class Solution {
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        List<Integer> ret = new ArrayList<Integer>();
+        if (nums == null || nums.length == 0) {
+            return ret;
+        }
+        
+        Map<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+        for (int num: nums) {
+            if (hashMap.get(num) != null) {
+                hashMap.put(num, hashMap.get(num) + 1);
+            } else {
+                hashMap.put(num, 1);
+            }
+        }
+        
+        Queue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>(k, new Comparator<Map.Entry<Integer, Integer>>(){
+            public int compare(Map.Entry<Integer, Integer> p1, Map.Entry<Integer, Integer> p2) {
+                return p2.getValue() - p1.getValue();
+            }
+        });
+        
+        for (Map.Entry<Integer, Integer> entry: hashMap.entrySet()) {
+            pq.offer(entry);
+        }
+        
+        for (int i = 0; i < k; i++) {
+            Map.Entry<Integer, Integer> entry = pq.poll();
+            ret.add(entry.getKey());
+        }
+        
+        return ret;
+    }
+}
+
 //beats 74.96%
 //bucket sort method from the leetcode discussion
 //1.use a hashmap to maintain the number and its frequency.
