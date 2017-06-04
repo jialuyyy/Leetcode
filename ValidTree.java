@@ -17,7 +17,7 @@ Note: you can assume that no duplicate edges will appear in edges. Since all edg
 //Time Complexity: O(n)
 //Space Complexity: used hashMap, hashSet and queue --> O(n)
 
-public class Solution {
+public class ValidTree {
     public boolean validTree(int n, int[][] edges) {
         if (edges == null || edges.length + 1 != n) {
             return false;
@@ -61,7 +61,7 @@ public class Solution {
 //Time Complexity: O(n)
 //Space Complexity: O(1)
 
-public class Solution {
+public class ValidTree {
     class UnionFind {
        int[] root;
         
