@@ -18,7 +18,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 //O(n):iterate over the nums array to put them into the hashMap , n is the length of the array
 //O(nlog(k)): priorityQueue
 
-public class Solution {
+public class TopKFrequent {
     class Pair {
         int key;
         int val;
@@ -67,7 +67,7 @@ public class Solution {
 }
 
 //Updates: beats 49.97%, same method as previous one. No need to create an inner class, just put the Map.Entry into the priority queue
-public class Solution {
+public class TopKFrequent {
     public List<Integer> topKFrequent(int[] nums, int k) {
         List<Integer> ret = new ArrayList<Integer>();
         if (nums == null || nums.length == 0) {
@@ -107,7 +107,7 @@ public class Solution {
 //1.use a hashmap to maintain the number and its frequency.
 //2.create a list array and its index is corresponding to the frequency. put the keys into the corresponding list according to its frequency.
 //Time Complexity: O(n)
-public class Solution {
+public class TopKFrequent {
     public List<Integer> topKFrequent(int[] nums, int k) {
         List<Integer> ret = new ArrayList<Integer>();
         if (nums == null || nums.length == 0) {
