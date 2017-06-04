@@ -55,3 +55,61 @@ public class Solution {
     }
 }
 
+
+//Union Find
+//beats 70.90%
+//Time Complexity: O(n)
+//Space Complexity: O(1)
+
+public class Solution {
+    class UnionFind {
+       int[] root;
+        
+       public UnionFind(int n) {
+           this.root = new int[n];
+           for (int i = 0; i < n; i++) {
+               root[i] = i;
+           }
+       }
+       
+       
+       private int find (int i) {
+           if (root[i] == i) {
+               return i;
+           }
+           
+           return root[i] = find(root[i]);
+       }
+       
+       private boolean union(int i, int j) {
+           int root1 = find(i);
+           int root2 = find(j);
+           
+           if (root1 != root2) {
+               root[root1] = root2;
+               return true;
+           }
+           
+           return false;
+       }
+    }
+    public boolean validTree(int n, int[][] edges) {
+        if (edges == null || edges.length + 1 != n) {
+            return false;
+        }
+        
+        UnionFind uf = new UnionFind(n);
+        
+        for (int[] edge: edges) {
+            int vertex1 = edge[0];
+            int vertex2 = edge[1];
+            
+            if (!uf.union(vertex1, vertex2)) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
+
