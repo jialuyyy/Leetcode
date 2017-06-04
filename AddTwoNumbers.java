@@ -74,3 +74,51 @@ public class AddTwoNumbers {
         
     }
 }
+
+//cleaner method(from leetcode discussion)
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        
+        ListNode dummy = new ListNode(-1);
+        ListNode ret = dummy;
+        ListNode p1 = l1;
+        ListNode p2 = l2;
+
+        int sum = 0;
+        while (p1 != null || p2 != null) {
+            
+            if (p1 != null) {
+                sum += p1.val;
+                p1 = p1.next;
+            }
+            
+            if (p2 != null) {
+                sum += p2.val;
+                p2 = p2.next;
+            }
+            
+            ListNode node = new ListNode(sum % 10);
+            ret.next = node;
+            ret = ret.next;
+            
+            sum /= 10;
+        }
+        
+       
+        if (sum == 1) {
+            ListNode node = new ListNode(sum);
+            ret.next = node;
+        }
+        
+        return dummy.next;
+        
+    }
+}
