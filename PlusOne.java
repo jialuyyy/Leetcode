@@ -10,7 +10,7 @@ The digits are stored such that the most significant digit is at the head of the
 
 //straightforward solution
 //beats 43.83%
-public class Solution {
+public class PlusOne {
     public int[] plusOne(int[] digits) {
         if (digits == null)
             return new int[]{};
