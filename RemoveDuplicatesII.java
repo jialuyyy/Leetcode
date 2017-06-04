@@ -7,7 +7,7 @@
 //time complexity: O(n)
 //beats 4.14% of submissions
 
-public class Solution {
+public class RemoveDuplicatesII {
     public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
