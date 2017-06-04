@@ -7,7 +7,7 @@
 //thoughts: two pointers, one(j) is used to iterate over the whole array, another one(i) is used
 //update the array if value is different than the current one. return i + 1.
 
-public class Solution {
+public class RemoveDuplicates {
     public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0)
             return 0;
