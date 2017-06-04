@@ -26,7 +26,7 @@ to
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+public class InvertTree {
     public TreeNode invertTree(TreeNode root) {
         if (root == null) 
             return root;
