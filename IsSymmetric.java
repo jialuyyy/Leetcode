@@ -27,7 +27,7 @@ But the following [1,2,2,null,3,null,3] is not:
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+public class IsSymmetric {
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
