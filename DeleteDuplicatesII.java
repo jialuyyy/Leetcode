@@ -20,7 +20,7 @@ Given 1->1->1->2->3, return 2->3.*/
 // beats 6.25%
 // Time complexity: O(n)
 
-public class Solution {
+public class DeleteDuplicatesII {
     public ListNode deleteDuplicates(ListNode head) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
