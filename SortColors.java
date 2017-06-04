@@ -9,7 +9,7 @@ You are not suppose to use the library's sort function for this problem.*/
 //beats 5.83%
 //very straightforward, just count the numbers of every color and put them into the array in sequence.
 //Time Complexity: two times iteration O(2n)
-public class Solution {
+public class SortColors {
     public void sortColors(int[] nums) {
         if (nums == null || nums.length < 2) {
             return;
