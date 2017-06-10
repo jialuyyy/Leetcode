@@ -1,8 +1,9 @@
 //iterate the two array from end to start
 //Time Complexity: O(n)
-public class MergeTwoSortedArray {
+//beats:47.04%
+public class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i = nums1.length - 1;
+        int i = m + n - 1;
         int j = m - 1;
         int k = n - 1;
         
@@ -16,10 +17,6 @@ public class MergeTwoSortedArray {
         
         while (k >= 0) {
             nums1[i--] = nums2[k--];
-        }
-        
-        while (j >= 0) {
-            nums1[i--] = nums1[j--];
         }
     }
 }
