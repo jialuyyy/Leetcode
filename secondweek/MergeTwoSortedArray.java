@@ -1,3 +1,5 @@
+//iterate the two array from end to start
+//Time Complexity: O(n)
 public class MergeTwoSortedArray {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int i = nums1.length - 1;
