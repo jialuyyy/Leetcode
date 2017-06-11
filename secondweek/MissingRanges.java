@@ -64,3 +64,48 @@ public class MissingRanges {
         return ret;
     }
 }
+
+//cleaner code
+//beats: 16.20%
+public class Solution {
+    public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+        List<String> ret = new ArrayList<String>();
+        if (nums == null) {
+            return ret;
+        }
+        
+        
+        for (int num: nums) {
+            //if lower is the Integer.MIN_VALUE, lower - 1 will become the maxValue
+            if(num == Integer.MIN_VALUE) {
+                lower = num + 1;
+                continue;
+            }
+            
+          
+            if (lower == num - 1) {
+                ret.add(lower + "");
+            } else if (lower < num - 1) {
+                ret.add(lower + "->" + (num - 1));
+            }
+            
+            if (num == Integer.MAX_VALUE) {
+                return ret;
+            }
+            lower = num + 1;
+        }
+        
+        
+        if (lower == upper) {
+            ret.add(upper + "");
+        }else if (lower < upper) {
+            ret.add(lower + "->" + upper);
+        }
+        
+        //if lower is the Integer.MAX_VALUE, lower + 1 will become the minvalue
+        if (lower == Integer.MIN_VALUE) {
+            return ret;
+        }
+        return ret;
+    }
+}
