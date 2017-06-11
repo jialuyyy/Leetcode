@@ -39,3 +39,32 @@ public class SummaryRanges {
         return ret;
     }
 }
+
+
+//beats: 65.45%
+//more concise solution reading from leetcode discussion
+public class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> ret = new ArrayList<String>();
+        if (nums == null || nums.length == 0) {
+            return ret;
+        }
+        
+        
+        for (int i = 0; i < nums.length; i++) {
+            int cur = nums[i];
+            while (i + 1 < nums.length && nums[i] == nums[i + 1] - 1) {
+                i++;
+            } 
+            if (cur == nums[i]) {
+                ret.add(cur + "");
+            } else {
+                ret.add(cur + "->" + nums[i]);
+            }
+               
+        }
+       
+        
+        return ret;
+    }
+}
