@@ -66,3 +66,23 @@ public class RandomizedSet {
  * boolean param_2 = obj.remove(val);
  * int param_3 = obj.getRandom();
  */
+	
+/*int max = 50;
+int min = 1;
+1. Using Math.random()
+
+double random = Math.random() * 50 + 1;
+or
+int random = (int )(Math.random() * 50 + 1);
+This will give you value from 1 to 50 using Math.random()
+
+Why?
+
+random() method returns a random number between 0.0 and 0.999. So, you multiply it by 50, so upper limit becomes 0.0 to 49.95 when you add 1, it becomes 1.0 to 50.95, now when you truncate to int, you get 1 to 50. (thanks to @rup in comments). leepoint's awesome write-up on both the approaches.
+2. Using Random class in Java.
+
+Random rand = new Random(); 
+int value = rand.nextInt(50); 
+This will give value from 0 to 49.
+
+For 1 to 50: rand.nextInt((max - min) + 1) + min;*/
