@@ -1,3 +1,6 @@
+//beats 28.25%
+//many corner cases to consider, not easy to implement
+
 public class FractionToDecimal {
     public String fractionToDecimal(int numerator, int denominator) {
         if (denominator == 0) {
