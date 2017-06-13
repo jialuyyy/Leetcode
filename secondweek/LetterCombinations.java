@@ -1,4 +1,7 @@
 //beats 23%
+//Time Complexity: O(k ^ n)
+//k is the average length of each strings in the map and the n is the digits length.
+
 public class LetterCombinations {
     public List<String> letterCombinations(String digits) {
         List<String> ret = new ArrayList<String>();
