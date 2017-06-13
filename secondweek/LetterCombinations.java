@@ -27,3 +27,37 @@ public class LetterCombinations {
         return ret;
     }
 }
+
+
+//beats 47.22%
+//recursive solution reading from the leetcode discussion
+public class Solution {
+    private static final String[] KEYS = {"", "", "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    public List<String> letterCombinations(String digits) {
+        List<String> ret = new ArrayList<String>();
+        if (digits == null || digits.length() == 0) {
+            return ret;
+        }
+        
+        helper("", digits, 0, ret);
+        
+        return ret;
+    }
+    
+    
+    private void helper(String prefix, String digits, int offset, List<String> ret) {
+        if (digits.length() == offset) {
+            ret.add(prefix);
+            return;
+        }
+        
+       
+        String letters = KEYS[(digits.charAt(offset) - '0')];
+        for (int i = 0; i < letters.length(); i++) {
+            helper(prefix + letters.charAt(i), digits, offset + 1, ret);
+        }
+        
+    }
+    
+    
+}
