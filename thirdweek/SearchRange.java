@@ -58,3 +58,41 @@ public class SearchRange {
         return ret;
     }
 }
+
+// one pass recursion solution
+public class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return new int[]{-1,-1};
+        }
+        
+        int[] ret = {nums.length, -1};
+        helper(nums, 0, nums.length - 1, target, ret);
+        
+        return ret[0] <= ret[1] ? ret: new int[]{-1, -1};
+    }
+    
+    private void helper(int[] nums, int start, int end, int target, int[] ret) {
+        if (start > end) {
+            return;
+        }
+        
+        int mid = (start + end) >>> 1;
+        
+        if (nums[mid] > target) {
+            helper(nums, start, mid - 1, target, ret);
+        } else if (nums[mid] < target) {
+            helper(nums, mid + 1, end, target, ret);
+        } else {
+            if (ret[0] > mid) {
+                ret[0] = mid;
+                helper(nums, start, mid - 1, target, ret);
+            }
+            
+            if (ret[1] < mid) {
+                ret[1] = mid;
+                helper(nums, mid + 1, end, target, ret);
+            }
+        }
+    }
+}
