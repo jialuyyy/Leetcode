@@ -10,7 +10,7 @@
  *     }
  * }
  */
-public class Solution {
+public class BinarySearchTreeInsertNode {
     /**
      * @param root: The root of the binary search tree.
      * @param node: insert this node into the binary search tree
