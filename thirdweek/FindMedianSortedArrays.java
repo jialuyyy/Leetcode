@@ -37,7 +37,7 @@ public class FindMedianSortedArrays {
 //find the kth element in two sorted arrays
 //k = (nums1.length + nums2.length) / 2;
 //beats 73.77%
-//Time complexity: O(log(n))
+//Time complexity: O(log(n)) n is the total length of the two arrays
 public class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int k = nums1.length + nums2.length;
