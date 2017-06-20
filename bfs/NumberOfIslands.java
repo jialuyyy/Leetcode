@@ -1,3 +1,11 @@
+//breadth first traverse the matrix, if the value is '1', do the bfs, add the current value into the queue, and iterate over the 
+//four directions, if it is '1', add into the queue and set the value from '1' to '0'; else, do nothing. when the queue is empty, an island
+//is found, return to the previous method and continue the loop.
+
+//Time Complexity: O(n)
+//Space Complexity: O(n)
+
+//beats 20%
 public class NumberOfIslands {
     
     class Point {
