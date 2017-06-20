@@ -4,6 +4,7 @@
 
 //Time Complexity: O(n)
 //Space Complexity: O(n)
+//two pass
 
 /**
  * Definition for undirected graph.
@@ -50,4 +51,44 @@ public class CloneGraph {
         
         return map.get(node);
     }
+    
+    
+    //one pass solution
+    //Time complexity: O(n)
+    //Space Complexity: O(n)
+    /**
+ * Definition for undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     List<UndirectedGraphNode> neighbors;
+ *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
+ * };
+ */
+public class Solution {
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if (node == null) {
+            return null;
+        }
+        
+        Map<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<UndirectedGraphNode,UndirectedGraphNode>();
+        Queue<UndirectedGraphNode> q = new ArrayDeque<UndirectedGraphNode>();
+        q.offer(node);
+        map.put(node, new UndirectedGraphNode(node.label));
+        
+        while (!q.isEmpty()) {
+            UndirectedGraphNode cur = q.poll();
+            
+            for (UndirectedGraphNode neighbor : cur.neighbors) {
+                if (map.get(neighbor) == null) {
+                    map.put(neighbor, new UndirectedGraphNode(neighbor.label));
+                    q.offer(neighbor);
+                }
+                
+                map.get(cur).neighbors.add(map.get(neighbor));
+            }
+        }
+        
+        return map.get(node);
+    }
+}
 }
