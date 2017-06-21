@@ -1,4 +1,4 @@
-public class combinationSum2 {
+public class CombinationSum2 {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> ret = new ArrayList<List<Integer>>();
         if (candidates == null || candidates.length == 0) {
