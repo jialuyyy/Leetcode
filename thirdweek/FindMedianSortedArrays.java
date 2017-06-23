@@ -38,6 +38,8 @@ public class FindMedianSortedArrays {
 //k = (nums1.length + nums2.length) / 2;
 //beats 73.77%
 //Time complexity: O(log(n)) n is the total length of the two arrays
+//example: [2,5,6,7,8] [7,8,9,10,11]
+//example: [100] [1,2,3,4,5.6,7,8,10]
 public class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int k = nums1.length + nums2.length;
