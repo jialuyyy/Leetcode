@@ -1,6 +1,7 @@
 //O(klog(k))
-//thoughts: put k elements into the queue first and then poll the element from the queue in the meantime push next possible value into
-//the queue.
+//thoughts: put k elements into the queue, put index (0, 0) (1, 0) (2, 0)..... into the queue
+//first and then poll the element from the queue in the meantime push next possible value for example, if current element is (0,0), 
+//then next will be (0, 1) into the queue.
 
 public class FindKSmallestPairs {
     private int[] dx = {0, 1};
