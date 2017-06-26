@@ -1,5 +1,5 @@
 //use a minheap to maintain the min value of the matrix. use a hash boolean two-dimensional matrix to avoid duplicates
-//Time Complexity: klog(n)
+//Time Complexity: klog(k)
 public class KthSmallestInSortedMatrix {
     private static int[] dx = {0, 1};
     private static int[] dy = {1, 0};
