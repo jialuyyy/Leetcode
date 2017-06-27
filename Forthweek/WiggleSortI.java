@@ -1,3 +1,5 @@
+//beats 67.38%
+//iterate over the array and make swap operations based on the conditions.
 public class WiggleSortI {
     public void wiggleSort(int[] nums) {
         if (nums == null || nums.length <= 1) {
