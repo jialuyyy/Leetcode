@@ -38,6 +38,11 @@ public class wiggleSortII {
 /*use three-way partition to sort the array. use quick select first, but some of the test cases are not passed, 
 as the duplicates will not be around the median element, we need to ensure the elements are in three parts, larger than median, 
 equal to median, less than median*/
+//if use quick select, the following input won't pass the test
+//[5,3,1,2,6,7,8,5,5]
+//after quick select, the array will be
+//[5,3,1,2,5,5,8,7,6]
+//the median duplicates are not together
 //ret[0] points to the start of the pivot element while ret[1] points to the end of the pivot element.
 //Time Complexity: O(n)
 //Space Complexity: O(n)
