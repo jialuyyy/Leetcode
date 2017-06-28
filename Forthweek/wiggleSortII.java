@@ -42,6 +42,14 @@ equal to median, less than median*/
 //Time Complexity: O(n)
 //Space Complexity: O(n)
 //need to do further optimization to make the space complexity to be O(1)
+//[1,3,2,2,3,1]
+//after three way partition
+//[1,1,2,2,2,3,3]
+//left half -> [1,1,2,2]
+//right half -> [2,3,3]
+//median is index 3, split the array into two parts, iterate over the left half and right half to put them back to the original array
+//and the values will be wiggle sorted.
+
 public class Solution {
     public void wiggleSort(int[] nums) {
         if (nums == null || nums.length == 0) {
