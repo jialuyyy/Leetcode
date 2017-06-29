@@ -32,3 +32,31 @@ public class FindCelebrity extends Relation {
         return -1;
     }
 }
+
+
+//optimized O(n) solution
+//first pass, get the person that may be the celebrity, if the candidate knows one of the persons, then he is invalid, and update the candidate
+//if the candidate does not know anyone behind, all of the persons behind are excluded
+//so we just need to check the validation of the candidate in the second pass
+//check every one wether knows him and he knows anyone
+
+/* The knows API is defined in the parent class Relation.
+      boolean knows(int a, int b); */
+
+public class Solution extends Relation {
+    public int findCelebrity(int n) {
+        int candidate = 0;
+        for (int i = 1; i < n; i++) {
+            if (knows(candidate, i))
+                candidate = i;
+        }
+        
+        for (int i = 0; i < n; i++) {
+            if (candidate != i && (!knows(i, candidate) || knows(candidate, i))) {
+                return -1;
+            }
+        }
+        
+        return candidate;
+    }
+}
