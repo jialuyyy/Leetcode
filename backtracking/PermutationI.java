@@ -1,5 +1,5 @@
 //beats 58%
-
+//Time Complexity: O(n! * n)
 public class PermutationI {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ret = new ArrayList<List<Integer>>();
