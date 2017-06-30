@@ -43,6 +43,8 @@ equal to median, less than median*/
 //after quick select, the array will be
 //[5,3,1,2,5,5,8,7,6]
 //the median duplicates are not together
+//wrong output
+//[5,6,2,7,1,8,3,5,5]
 //ret[0] points to the start of the pivot element while ret[1] points to the end of the pivot element.
 //Time Complexity: O(n)
 //Space Complexity: O(n)
