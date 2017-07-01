@@ -1,5 +1,5 @@
 //dp use costs[n][3] as the two dimentional matrix to represent the total cost from 0 to n - 1 house
-//and costs[n][0] denotes paint the current n - 1 house with red...
+//and costs[n][0] denotes paint the current n - 1 house with red plus the minmum costs of previous houses
 //result is the minimum value of cost[n - 1][0] cost[n - 1][1] cost[n - 1][2]
 public class PaintHouseI {
     public int minCost(int[][] costs) {
