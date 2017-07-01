@@ -1,5 +1,5 @@
-//primitive solution, the same idea as paint house I, but the time Complexity will be O(n ^ 3)
-//there should be some way to optimize it
+//primitive solution, the same idea as paint house I, but the time Complexity will be O(n * K * K)
+//there should be some way to optimize it to be O(n * K)
 
 public class PaintHouseII {
     public int minCostII(int[][] costs) {
