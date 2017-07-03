@@ -1,6 +1,6 @@
 //use Trie data structure to do add and search, as it saves a lot of space
 //the instance of a TrieNode contains an 26 size TrieNode arr and a boolean to denote if it is the end of a word or not
-
+//beats 83.93%
 public class WordDictionary {
 
     /** Initialize your data structure here. */
