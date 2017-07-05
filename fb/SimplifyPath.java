@@ -5,7 +5,8 @@
 //if the stack is not empty and the current string equals "..", pop the value of the stack
 //if the current string equals .., ., or "", skip
 //otherwise push it into the stack
-
+//Time Complexity : O(n)
+//Space Complexity: O(n)
 public class SimplifyPath {
     public String simplifyPath(String path) {
         String ret = "";
