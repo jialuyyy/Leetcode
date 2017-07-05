@@ -42,6 +42,8 @@ public class PaintHouseII {
 
 //optimized solution: two for loops 
 //Time Complexity: O(n ^ 2)
+//use two variables: min1 and min2 to keep track of the 1st and 2nd minimim elements of current house and lastMin1 and latsMin2 keep the
+//1st and 2nd minimum elements of previous houses.
 
 public class Solution {
     public int minCostII(int[][] costs) {
