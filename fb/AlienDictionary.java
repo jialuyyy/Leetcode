@@ -2,7 +2,8 @@
 //build a hashmap to keep the character and the characters after it.
 //build a indegree hashmap to keep all the indegrees of every character
 //offer the character into the queue if its indegree is decreased to 0
-
+//need to note some special case: "za" "zb" "ca" "cb", in this case {a} {b} pair appears twice, so we need to do something to avoid duplicates
+//use a hashset is a way to avoid duplicate
 public class AlienDictionary {
     public String alienOrder(String[] words) {
         if (words == null || words.length == 0) {
