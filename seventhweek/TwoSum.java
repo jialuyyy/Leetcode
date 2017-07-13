@@ -1,5 +1,7 @@
 //iterate over a hashmap is too slow
 // so use a list to maintain the key of the hashmap
+//find: O(n)
+//add: O(1)
 public class TwoSum {
 
     /** Initialize your data structure here. */
