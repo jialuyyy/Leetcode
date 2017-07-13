@@ -1,5 +1,6 @@
 //maxHeap to maintain the smaller half of the values
 //minHeap to maintian the larger half of the values
+//get the maxValue in the smaller half and the minValue in the larger half and then get the average
 //every time push the value to the maxHeap first, and poll the maxValue of teh maxHeap to the minHeap, if the minHeap.size() > maxHeap.size()
 //poll the minVlue of teh minHeap to the maxHeap, so that we ensure that the size of the maxHeap is larger thatn minHeap by 1 or equal
 //addNum(int num): O(1)
