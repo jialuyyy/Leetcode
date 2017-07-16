@@ -1,4 +1,7 @@
 //List has its iterator
+//beats 70.98%
+//use the list iterator of the two lists, if i1.hasNext(), swap the two iterator and return i2.next(); else, which means i1 already reached 
+//to the end,so get the i2.next().
 public class ZigzagIterator {
     private Iterator<Integer> i1 = null;
     private Iterator<Integer> i2 = null;
