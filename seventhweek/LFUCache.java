@@ -115,9 +115,12 @@ public class LFUCache {
  * obj.put(key,value);
  */
 
-//TreeSet use compareTo to compare the values in it, so need to use a hashmap that key-value pair is key and cachenode to retrieve the 
+//TreeSet implements comparable to compare the values in it, so need to use a hashmap that key-value pair is key and cachenode to retrieve the 
 //node in treenode
 //the remove time complexity here is O(log(n)) n is the capacity of the map
+//question: why need a hashMap to maintain the key and the cache node to retrieve the node need to be removed, and not like in the previous 
+//implementation, just need to remove the cache node based on the key value. I know it is because of the compareTo() method, but what is the 
+//real reason behind this.
 public class LFUCache {
     private int capacity;
     private TreeSet<CacheNode> treeSet = null;
@@ -137,9 +140,9 @@ public class LFUCache {
             this.recentness = recentness;
         }
         
-        //override the equals() and hashCode() method, to do the remove in the priority queue
-        
-        public int hashCode() {return key;}
+        //override the compareTo() method in the Comparable interface to do the comparison for the cache node
+        //if the key is the same, they are equal, else, compare the frequency, if the frequency is the same, compare the 
+        //recentness.
         public int compareTo(CacheNode o) {return key == o.key? 0 : freq == o.freq ? recentness - o.recentness:freq - o.freq;}
         
     }
@@ -205,7 +208,7 @@ public class LFUCache {
         //create a new cache node with the new frequency and the recentness, the larger the id is, the larger the recentness
         CacheNode cache = new CacheNode(key, f, id);
         cacheMap.put(key, cache);
-        //remove the current cache node in the queue and offer the new node
+        //remove the current cache node in the treeset and offer the new node
         treeSet.add(cache);
         
     }
