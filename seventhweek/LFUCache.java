@@ -118,9 +118,6 @@ public class LFUCache {
 //TreeSet implements comparable to compare the values in it, so need to use a hashmap that key-value pair is key and cachenode to retrieve the 
 //node in treenode
 //the remove time complexity here is O(log(n)) n is the capacity of the map
-//question: why need a hashMap to maintain the key and the cache node to retrieve the node need to be removed, and not like in the previous 
-//implementation, just need to remove the cache node based on the key value. I know it is because of the compareTo() method, but what is the 
-//real reason behind this.
 public class LFUCache {
     private int capacity;
     private TreeSet<CacheNode> treeSet = null;
