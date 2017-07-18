@@ -1,4 +1,8 @@
 //beats 28.79
+//build a trie tree when searching word
+//for the search method, use BFS to cope with the special '.' case
+//Time Complexity: addWord O(n) n is the length of the input word
+//search word O(n) n is the length of the input word
 public class WordDictionary {
 
     /** Initialize your data structure here. */
