@@ -1,3 +1,8 @@
+//Time Complexity analysis
+//get(int key):queue.remove(cacheNode) needs O(n), n is the size of the queue, but for map retrieval is O(1)
+//put(int key, int value): O(n) time to do the removal and O(1) time to update the frequency hashmap and keyValue hashMap
+
+//should use treemap instead, as for treepmap the removal operation only takes O(log(capacity)) time.
 public class LFUCache {
     private int capacity;
     private Queue<CacheNode> queue = null;
