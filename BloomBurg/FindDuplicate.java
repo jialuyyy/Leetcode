@@ -9,7 +9,7 @@
 //use binary search 
 
 //Time Complexity O(nlog(n))
-public class FindDuplicate {
+public class Solution {
     //1,2,3,4,5,5,6,7,8,9,10
     //nums.length = 11;
     //left = 1;
@@ -18,6 +18,17 @@ public class FindDuplicate {
     //count = 6
     //so the duplicate number is in 1 to 5
     //right = mid;
+    
+    //mid = 3
+    //count = 3
+    
+    //left = 4
+    //mid = 4
+    
+    //left = 5
+    //left = right
+    //stop
+    
     public int findDuplicate(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
