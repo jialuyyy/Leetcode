@@ -217,3 +217,185 @@ public class LFUCache {
  * int param_1 = obj.get(key);
  * obj.put(key,value);
  */
+
+//data structure used:
+//1. keyValueMap is used to maintain the key value pair
+//2. keyNodeMap is used to maintain the key with its corresponding node in the doubly linked list
+//3. doublylinked list is used to maintain the frequency of the each key, in each node, keep, the frequency, key and a linkedhashset
+//why use linkedHashSet?
+// for the situation when there are multiple keys with the least frequency when doing
+//the remove, linkedhashset keeps the sequence of insertion, so the oldest one will be at the front of the linked hashset 
+
+//get(key)
+//1. if the key exist, get the value from the keyvaluemap and increase the freqency in the doubly linked list
+//2. otherwise, return -1;
+
+//put(key, value)
+//1. if the key exist, override the value in the keyValueHashmap and increase the frequency in the doubly linkedlist
+//2. If not
+//    1. if reaches capacity, remove the old ones first and add the new one, should add it to the head of the doubly 
+//    linked list and then increase the frequency
+//    2. simply add the new one, should add it to the head of the doubly linked list and then increase the frequency
+
+
+
+//increase Frequency(key)
+
+//remove the key from the keyNodehashMap first
+//add the key to the currentCount + 1' s node in the doubly linked list
+//update the keyNode hash
+//if the head's keyset is empty, remove the head node
+
+
+//Time Complexity:
+
+//get(key:O(1)
+
+//put(key, value) :O(1)
+public class LFUCache {
+    class Node {
+        //the used frequency
+        int count;
+        int key;
+        //in sequence, use linkedhashset, for the situation when there are multiple keys with the least frequency when doing
+        //the remove, linkedhashset keeps the sequence of insertion, so the oldest one will be at the front of the linked hashset
+        LinkedHashSet<Integer> keySet = null;
+        Node prev = null;
+        Node next = null;
+        
+        public Node (int count) {
+            this.count = count;
+            this.keySet = new LinkedHashSet<Integer>();
+        }
+        
+    }
+    private int capacity;
+    private Node head = null;
+    private Map<Integer, Integer> keyValueHash = null;
+    private Map<Integer, Node> keyNodeHash = null;
+    public LFUCache(int capacity) {
+        this.capacity = capacity;
+        this.keyValueHash = new HashMap<Integer, Integer>();
+        this.keyNodeHash = new HashMap<Integer, Node>();
+    }
+    
+    public int get(int key) {
+        if (keyValueHash.containsKey(key)) {
+            increaseFreq(key);
+            
+            return keyValueHash.get(key);
+        }
+        
+        return -1;
+    }
+    
+    public void put(int key, int value) {
+        if (this.capacity == 0) {
+            return;
+        }
+        
+        if (keyValueHash.containsKey(key)) {
+            //update the keyValueHash
+            keyValueHash.put(key, value);
+        } else {
+            //reach capacity
+            if (this.capacity == keyValueHash.size()) {
+                //remove the least frequently used one
+                removeOld();
+                keyValueHash.put(key, value);
+            } else {
+                keyValueHash.put(key, value);
+            }
+            
+            //add the new node into the doubly linked list
+            addToHead(key);
+        }
+        
+        //increaseFreq
+        increaseFreq(key);
+    }
+    
+    private void addToHead(int key) {
+        if (head == null) {
+            head = new Node(0);
+            head.keySet.add(key);
+        } else if (head.count > 0) {
+            Node node = new Node(0);
+            node.keySet.add(key);
+            node.next = head;
+            head.prev = node;
+            head = node;
+        } else {
+            head.keySet.add(key);
+        }
+        
+        keyNodeHash.put(key, head);
+    }
+    
+    private void increaseFreq(int key) {
+        //get the node from the keyNodehash, and remove it from the current keyset
+        Node node = keyNodeHash.get(key);
+        node.keySet.remove(key);
+        
+        if (node.next == null) {
+            node.next = new Node(node.count + 1);
+            node.next.prev = node;
+            node.next.keySet.add(key);
+        } else if (node.next.count == node.count + 1) {
+            node.next.keySet.add(key);
+        } else {
+            Node n = new Node(node.count + 1);
+            n.keySet.add(key);
+            n.prev = node;
+            n.next = node.next;
+            node.next = n;
+            n.next.prev = n;
+        }
+        
+        keyNodeHash.put(key, node.next);
+        
+        if (node.keySet.size()== 0) {
+            remove(node);
+        }
+        
+    }
+    
+    private void removeOld() {
+        if (head == null)
+            return;
+        
+        int index = 0;
+        
+        for (int k: head.keySet) {
+            index = k;
+            break;
+        }
+        
+        head.keySet.remove(index);
+        if (head.keySet.size() == 0) {
+            remove(head);
+        }
+        
+        keyNodeHash.remove(index);
+        keyValueHash.remove(index);
+    }
+    
+    private void remove(Node n) {
+        if (n.prev == null) {
+            head = n.next;
+        } else {
+            n.prev.next = n.next;
+        }
+        
+        if (n.next != null) {
+            n.next.prev = n.prev;
+        }
+    }
+}
+
+/**
+ * Your LFUCache object will be instantiated and called as such:
+ * LFUCache obj = new LFUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
