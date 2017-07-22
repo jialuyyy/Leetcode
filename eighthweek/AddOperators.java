@@ -62,3 +62,52 @@ public class AddOperators {
     
     
 }
+
+//more straight forward than the previous one,
+// 1, 2, 3
+// 1, 23
+// 12, 3
+// 123
+
+// i is the partition position of the current and next substring
+//i = 1 =>  1 (2, 3) => 1 (2) (3) => trace back 1 (23) => trace back (12) 3 => trace back (123) 
+public class Solution {
+    public List<String>  addOperators(String num, int target) {
+        List<String> ret = new ArrayList<String>();
+        if (num == null) {
+            return ret;
+        }
+        
+        helper(num, target, "", 0, 0, ret);
+        return ret;
+    }
+    
+    private void helper(String num,int target, String path, long curRes, long prevNum, List<String> ret) {
+        if (num.length() == 0 && curRes == target) {
+            ret.add(new String(path));
+            return;
+        }
+        
+        for (int i = 1; i <= num.length(); i++) {
+            String cur = num.substring(0, i);
+            
+            if (cur.length() > 1 && cur.charAt(0) == '0') {
+                return;
+            }
+            
+            long curNum = Long.parseLong(cur);
+            String next = num.substring(i);
+            
+            if (path.length() != 0) {
+                helper(next, target, path + "+" + cur, curRes + curNum, curNum, ret);
+                helper(next, target, path + "-" + cur, curRes - curNum, -curNum, ret);
+                helper(next, target, path + "*" + cur, (curRes - prevNum) + prevNum * curNum, prevNum * curNum, ret);
+            } else {
+                helper(next, target, cur, curNum, curNum, ret);
+            }
+            
+        }
+    }
+    
+    
+}
