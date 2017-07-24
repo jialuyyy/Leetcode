@@ -1,3 +1,18 @@
+/*
+1 2 3
+4 5 6
+7 8 9
+*/
+
+// 12   36   98   74   5
+
+//the level number is the (Math.min(rows, cols) + 1) / 2
+// every level, the lastRow = rows - 1 - i
+//every level, the lastCol = cols - 1 - i
+
+//for the next level, rows -2 and cols - 2, here the starting point is represented by i and the ending point represented by lastRow and lastCol
+
+
 public class SpiralOrder {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> ret = new ArrayList<Integer>();
