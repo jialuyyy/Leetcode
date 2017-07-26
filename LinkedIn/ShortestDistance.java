@@ -39,3 +39,34 @@ public class ShortestDistance {
         return 0;
     }
 }
+
+//one pass solution
+//iterate over the array, to check whether current word equals to word1 or word2, update the index if equaling.
+//if p1 != -1 and p2 != -1, update the minimum value
+
+public class Solution {
+    public int shortestDistance(String[] words, String word1, String word2) {
+        if (words == null || words.length == 0 || word1 == null || word2 == null) {
+            return 0;
+        }
+        
+        int min = Integer.MAX_VALUE;
+        int p1 = -1;
+        int p2 = -1;
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].equals(word1)) {
+                p1 = i;
+            }
+            
+            if (words[i].equals(word2)) {
+                p2 = i;
+            }
+            
+            if (p1 != -1 && p2 != -1) {
+                min = Math.min(min, Math.abs(p1 - p2));
+            }
+        }
+        
+        return min;
+    }
+}
