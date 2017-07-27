@@ -46,3 +46,54 @@ public class Connect {
         
     }
 }
+
+
+/**
+ * Definition for binary tree with next pointer.
+ * public class TreeLinkNode {
+ *     int val;
+ *     TreeLinkNode left, right, next;
+ *     TreeLinkNode(int x) { val = x; }
+ * }
+ */
+/*
+
+use two variables, one to keep the level and the other one to iterate over the current level
+
+cur.left.next = cur.right;
+cur.right.next = cur.next.left;
+
+cur = cur.next;
+
+level = level.left;
+         1
+       /  \
+      2    3
+     / \  / \
+    4  5  6  7
+
+*/
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        TreeLinkNode level = root;
+        TreeLinkNode cur = null;
+        
+        while (level != null) {
+            cur = level;
+            
+            while (cur != null) {
+                if (cur.left != null) {
+                    cur.left.next = cur.right;
+                }
+            
+                if (cur.right != null && cur.next != null) {
+                    cur.right.next = cur.next.left;
+                }
+            
+                cur = cur.next;
+            }
+            
+            level = level.left;
+        }
+    }
+}
