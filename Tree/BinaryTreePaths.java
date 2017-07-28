@@ -36,3 +36,42 @@ public class BinaryTreePaths {
         sb.setLength(length);
     }
 }
+
+
+//get all the left tree paths and the right tree paths, and for every path, add the root value into it, and if 
+
+// the size of the paths is 0, which means it is the leaf node and add the root value into it divide conqure
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> paths = new ArrayList<String>();
+        if (root == null) {
+            return paths;
+        }
+        List<String> left = binaryTreePaths(root.left);
+        List<String> right = binaryTreePaths(root.right);
+        
+        for (String l: left) {
+            paths.add(root.val + "->" + l);
+        }
+        
+        for (String r: right) {
+            paths.add(root.val + "->" + r);
+        }
+        
+        if (paths.size() == 0) {
+            paths.add("" + root.val);
+        }
+        return paths;
+    }
+    
+    
+}
