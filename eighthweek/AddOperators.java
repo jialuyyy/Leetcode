@@ -38,10 +38,6 @@ public class AddOperators {
         //so when i != pos, but cur.charAt(pos) == '0', which means the substring is longer than 1 and the first digit is 0,
         //we need to discard this case
         
-        //1 2 3
-        // 1 (23)
-        //(12) 3
-        //(123)
         for (int i = pos; i < num.length(); i++) {
             //"00" case is excluded
             //i != pos means that we already 
