@@ -4,7 +4,7 @@
 
 // if not saving the multiplied element, it will be  (1 + 2) * 3
 // so we need to decrease the 2 first, and do the multiplication (1 + 2 - 2) + 2 * 3
-//we need to svae the 2 for the next recursion
+//we need to save the 2 for the next recursion
 
 
 public class AddOperators {
@@ -38,6 +38,10 @@ public class AddOperators {
         //so when i != pos, but cur.charAt(pos) == '0', which means the substring is longer than 1 and the first digit is 0,
         //we need to discard this case
         
+        //1 2 3
+        // 1 (23)
+        //(12) 3
+        //(123)
         for (int i = pos; i < num.length(); i++) {
             //"00" case is excluded
             //i != pos means that we already 
