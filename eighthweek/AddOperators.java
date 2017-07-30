@@ -69,6 +69,13 @@ public class AddOperators {
 // 12, 3
 // 123
 
+// if not saving the multiplied element, it will be  (1 + 2) * 3
+// so we need to decrease the 2 first, and do the multiplication (1 + 2 - 2) + 2 * 3
+//we need to svae the 2 for the next recursion
+
+//curRes current calculation result
+//prevNum the addend or the su substractor of last time
+
 // i is the partition position of the current and next substring
 //i = 1 =>  1 (2, 3) => 1 (2) (3) => trace back 1 (23) => trace back (12) 3 => trace back (123) 
 public class Solution {
@@ -91,6 +98,7 @@ public class Solution {
         for (int i = 1; i <= num.length(); i++) {
             String cur = num.substring(0, i);
             
+            //"00" "01" is invalid return directly
             if (cur.length() > 1 && cur.charAt(0) == '0') {
                 return;
             }
@@ -98,11 +106,19 @@ public class Solution {
             long curNum = Long.parseLong(cur);
             String next = num.substring(i);
             
+            //1 -> 1 + 2 -> 1+2+3 return
+            // 1 + 2 - 3
+            // (1 + 2 -2) + 2 * 3
+            
+            //1 23
+            //12 3
+            
             if (path.length() != 0) {
                 helper(next, target, path + "+" + cur, curRes + curNum, curNum, ret);
                 helper(next, target, path + "-" + cur, curRes - curNum, -curNum, ret);
                 helper(next, target, path + "*" + cur, (curRes - prevNum) + prevNum * curNum, prevNum * curNum, ret);
             } else {
+                //if path.length == 0 avoid + 1
                 helper(next, target, cur, curNum, curNum, ret);
             }
             
