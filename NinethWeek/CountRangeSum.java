@@ -2,6 +2,7 @@
 //get the presum from the original array
 //two layers loop to get all the subsum from index i to j
 // for instance presum[1] - presum[0] = subSum[0,0]
+//time limit exception, need to do optimization to make it O(n(log(n)))
 public class CountRangeSum {
     public int countRangeSum(int[] nums, int lower, int upper) {
         if (nums == null) {
