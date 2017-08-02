@@ -15,7 +15,7 @@
   4 5
   
   for 4 5 3 the height will be 0
-  for 2 3 the height will be 1
+  for 2  the height will be 1
   for 1 the height will be 2
   
   the node at the same height will be in the same sublist of the result list and the height will be the index of the node's sub list in the result
