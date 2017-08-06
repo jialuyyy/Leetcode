@@ -53,3 +53,72 @@ public class WordLadder {
         return list;
     }
 }
+
+public class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        if (beginWord.equals(endWord)) {
+            return 0;
+        }
+    
+        if (!wordList.contains(endWord)) {
+            return 0;
+        }
+        
+        
+        Deque<String> q = new ArrayDeque<String>();
+        Set<String> set = new HashSet<String>();
+        
+        //put the words in the array list into a hashset to reduce time complexity
+        for (String word: wordList) {
+            set.add(word);
+        }
+        
+        q.offer(beginWord);
+        
+        int count = 1;
+        
+        while (!q.isEmpty()) {
+            int size = q.size();
+            
+            for (int i = 0; i < size; i++) {
+                String cur = q.poll();
+                
+                List<String> arr = getValidStrings(cur, set);
+                for (String a: arr) {
+                    if (a.equals(endWord)) {
+                        return ++count;
+                    }
+                    q.offer(a);
+                    set.remove(a);
+                }
+                
+            }
+            count++;
+        }
+        
+        return 0;
+    } 
+    
+    private List<String> getValidStrings(String cur, Set<String> dict) {
+        
+        char[] ch = cur.toCharArray();
+        List<String> valid = new ArrayList<String>();
+        
+        for (int i = 0; i < ch.length; i++) {
+            char c = ch[i];
+            
+            for (char j = 'a'; j <= 'z'; j++) {
+                if (j != c) {
+                    ch[i] = j;
+                    if (dict.contains(String.valueOf(ch))) {
+                        valid.add(String.valueOf(ch));
+                    }
+                }
+            }
+            
+            ch[i] = c;
+        }
+        
+        return valid;
+    }
+}
