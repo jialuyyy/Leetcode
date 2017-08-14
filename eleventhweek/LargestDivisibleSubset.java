@@ -1,12 +1,34 @@
-public class LargestDivisibleSubset {
+//1, 2, 4, 8
+//dp[i] denotes the size of the largest subset ending in index i
+//dp[0] = 1 [1]
+//dp[1] = 2 [1, 2]
+//dp[2] = 3 [1, 2, 4]
+//dp[3] = 4 [1, 2, 4, 8]
+
+
+//1, 5, 9 ,10
+
+//dp[0] = 1; [1]
+//dp[1] = 2; [1, 5]
+//dp[2] = 2; [1, 9]
+//dp[3] = 3; [1, 5, 10]
+
+//In order to populate the result in the end, need to keep the parent index of every elementfor example, for element 10, the parent index should be 1.
+
+public class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
         List<Integer> ret = new ArrayList<Integer>();
         if (nums == null || nums.length == 0) {
             return ret;
         }
-        
+    
+        /*Input:
+         [3,4,16,8]
+         Output:
+         [4,16]
+          Expected:
+         [4,8,16]*/
         Arrays.sort(nums);
-        
         int[] parent = new int[nums.length];
         Arrays.fill(parent, -1);
         int[] dp = new int[nums.length];
