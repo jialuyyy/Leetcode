@@ -32,6 +32,12 @@ public class IsScramble {
 }
 
 
+//"ab" "ba"
+//dp[0][0][1] = false;
+//dp[0][1][1] = true;
+//dp[1][0][1] = true;
+//dp[1][1][1] = false;
+//dp[0][0][2] = dp[0][1][1] && dp[1][0][1] = true;
 public class Solution {
     public boolean isScramble(String s1, String s2) {
         if (s1 == null || s2 == null || s1.length() != s2.length()) {
