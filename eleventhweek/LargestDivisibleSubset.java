@@ -13,7 +13,8 @@
 //dp[2] = 2; [1, 9]
 //dp[3] = 3; [1, 5, 10]
 
-//In order to populate the result in the end, need to keep the parent index of every elementfor example, for element 10, the parent index should be 1.
+//In order to populate the result in the end, need to keep the parent index of every elementfor example, for element 10, the parent 
+//index should be 1.
 
 public class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
@@ -28,6 +29,7 @@ public class Solution {
          [4,16]
           Expected:
          [4,8,16]*/
+//parent [-1 0 2]
         Arrays.sort(nums);
         int[] parent = new int[nums.length];
         Arrays.fill(parent, -1);
@@ -41,6 +43,7 @@ public class Solution {
             for (int j = i - 1; j >= 0; j--) {
                 
                 if (nums[i] % nums[j] == 0) {
+                    //更新dp[i] and parent[i]
                     if (dp[i] < dp[j] + 1) {
                         dp[i] = dp[j] + 1;
                         parent[i] = j;
@@ -49,6 +52,7 @@ public class Solution {
                 
             }
             
+            //update maxsize and lastIndex
             if (maxSize < dp[i]) {
                 maxSize = dp[i];
                 lastIndex = i;
