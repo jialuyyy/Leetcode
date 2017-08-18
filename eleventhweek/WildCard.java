@@ -6,6 +6,10 @@
 //"aaabc*"
 //dp[i][j] = dp[i - 1][j]
 
+//""
+//"*"
+//dp[0][1] = dp[0][0], so dp[0][0] = true
+
 public class WildCard {
     public boolean isMatch(String s, String p) {
         boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
