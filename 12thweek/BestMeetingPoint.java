@@ -68,4 +68,39 @@ class BestMeetingPoint {
         
         return min = min == Integer.MAX_VALUE? 1 : min;
     }
+    
+//optimized solution
+class BestMeetingPoint {
+    public int minTotalDistance(int[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
+        
+        List<Integer> x = new ArrayList<Integer>();
+        List<Integer> y = new ArrayList<Integer>();
+        
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == 1) {
+                    x.add(i);
+                    y.add(j);
+                }
+            }
+        }
+        
+        return getMin(x) + getMin(y);
+    }
+    
+    private int getMin(List<Integer> list) {
+        Collections.sort(list);
+        int start = 0;
+        int end = list.size() - 1;
+        int ret = 0;
+        while (start < end) {
+            ret += list.get(end--) - list.get(start++);
+        }
+        
+        return ret;
+    }
+}
 }
