@@ -68,8 +68,9 @@ class BestMeetingPoint {
         
         return min = min == Integer.MAX_VALUE? 1 : min;
     }
+
     
-//optimized solution
+//optimized solution, reading from discussion on leetcode
 class BestMeetingPoint {
     public int minTotalDistance(int[][] grid) {
         if (grid == null || grid.length == 0) {
@@ -102,5 +103,4 @@ class BestMeetingPoint {
         
         return ret;
     }
-}
 }
