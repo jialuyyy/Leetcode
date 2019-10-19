@@ -12,6 +12,13 @@ Return the exclusive time of each function, sorted by their function id.*/
 
 //logs = ["0:start:0","1:start:2","1:end:5","0:end:6"]
 //Output: [3, 4]
+
+/*
+Using a stack to keep track of the functions. Using a prev variable to keep track of the previous timestamp. If the current one is
+a start function, just update the exclusive time of the top function on the stack using curTimestamp - pre; If the current one
+is an ending function, pop the top function on the stack and update the exclusive time using curTimestamp - prev + 1 and update the 
+prev.
+*/
 class Solution {
     public int[] exclusiveTime(int n, List<String> logs) {
         if (logs == null || logs.size() == 0)
