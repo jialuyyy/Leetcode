@@ -6,6 +6,7 @@
 //isLeft to mark whether current node is the left child or not, if it is, the index should keep the same, if it is the right child,
 //need to update the index to get to the next node in the list.
 
+//ArrayDeque is not allowed null to be inserted into it
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
