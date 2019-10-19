@@ -71,6 +71,7 @@ class BestMeetingPoint {
 
     
 //optimized solution, reading from discussion on leetcode
+//median point should be the best meeting point
 class BestMeetingPoint {
     public int minTotalDistance(int[][] grid) {
         if (grid == null || grid.length == 0) {
