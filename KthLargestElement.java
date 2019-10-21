@@ -1,3 +1,6 @@
+//use a smalllest heap
+//Time Complexity : O(Nlog(K))
+//K is the size of the heap and N is the total number of the elements in the array
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         
