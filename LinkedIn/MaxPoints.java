@@ -20,6 +20,8 @@ a problem, so the key should be a string x : y
 for the overlap point, we need to do the special operation
 
 */
+
+//[[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
 public class MaxPoints {
     public int maxPoints(Point[] points) {
         if (points == null || points.length == 0) {
