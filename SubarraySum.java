@@ -9,6 +9,7 @@
 
 //start = 2; end = 3
 //sum is 1
+//Time Complexity : O(n ^ 2)
 class SubarraySum {
     public int subarraySum(int[] nums, int k) {
         if (nums == null || nums.length == 0)
@@ -34,5 +35,37 @@ class SubarraySum {
         }
         
         return count;
+    }
+}
+
+//use a map to keep the presum and the counting mapping
+//check if the map contains currentSum - target every time, if found, which means we get a
+//valid the subsum and we can increase the count and update the map every time
+//Time Complexity : O(n)
+//Space Complexity: O(n)
+class SubarraySum {
+    public int subarraySum(int[] nums, int k) {
+        if (nums == null || nums.length == 0)
+            return 0;
+        
+        Map<Integer, Integer> sumCounting = new HashMap<>();
+        
+        //presum equals 0
+        sumCounting.put(0, 1);
+        
+        int sum = 0;
+        int count = 0;
+        for (int i = 0; i< nums.length; i++) {
+            sum += nums[i];
+            
+            if (sumCounting.containsKey(sum - k)) {
+                count += sumCounting.get(sum - k);
+            }
+            
+            sumCounting.put(sum, sumCounting.getOrDefault(sum, 0) + 1);
+        }
+        
+        return count;
+        
     }
 }
