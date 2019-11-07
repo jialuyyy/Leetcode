@@ -7,15 +7,16 @@ class FindDuplicate {
         //build a content Directory map to get the result
         Map<String, List<String>> contentDirMap = new HashMap<>();
         
+        //O(n)
         for (String path : paths) {
             String[] values = path.split(" ");
             String prefix = values[0];
-            
+            //O(Len)
             for (int i = 1; i < values.length; i++) {
-                //"3.txt"
+                //"3.txt"  O(l)
                 String fileName = values[i].substring(0, values[i].indexOf("("));
                 
-                //file content "efgs"
+                //file content "efgs"   O(l)
                 String content = values[i].substring(values[i].indexOf("(") + 1, values[i].length() - 1);
                 
                 if (!contentDirMap.containsKey(content)) {
@@ -28,7 +29,7 @@ class FindDuplicate {
             }
         }
         
-        //iterate over the keyset of the hashmap
+        //iterate over the keyset of the hashmap O(n)
         for(String key : contentDirMap.keySet()) {
             if (contentDirMap.get(key).size() > 1) {
                 ret.add(contentDirMap.get(key));
