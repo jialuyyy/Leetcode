@@ -65,3 +65,45 @@ class CriticalConnections {
         return visited.size() != n;
     }
 }
+
+
+class CriticalConnections {
+    public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
+        List<Integer>[] graph = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        
+        for (List<Integer> oneConnection : connections) {
+            graph[oneConnection.get(0)].add(oneConnection.get(1));
+            graph[oneConnection.get(1)].add(oneConnection.get(0));
+        }
+        
+        int[] timer = new int[1];
+        List<List<Integer>> results = new ArrayList<>();
+        boolean[] visited = new boolean[n];
+        int[] timeStampAtThatNode = new int[n];
+        criticalConnectionsUtils(graph, -1, 0, timer, visited, results, timeStampAtThatNode);
+        
+        return results;
+    }
+    
+    private void criticalConnectionsUtils(List<Integer>[] graph, int parent, int node, int[] timer, boolean[] visited, List<List<Integer>> results, int[] timeStampAtThatNode) {
+        visited[node] = true;
+        timeStampAtThatNode[node] = timer[0]++;
+        
+        int currentTimeStamp = timeStampAtThatNode[node];
+        
+        for(int oneNeighbor : graph[node]) {
+            if (oneNeighbor == parent) 
+                continue;
+            
+            if (!visited[oneNeighbor])
+                criticalConnectionsUtils(graph, node, oneNeighbor, timer, visited, results, timeStampAtThatNode);
+            
+            timeStampAtThatNode[node] = Math.min(timeStampAtThatNode[node], timeStampAtThatNode[oneNeighbor]);
+            if (currentTimeStamp < timeStampAtThatNode[oneNeighbor])
+                results.add(Arrays.asList(node, oneNeighbor));
+        }
+    }
+}
