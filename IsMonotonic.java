@@ -29,3 +29,27 @@ class IsMonotonic {
         return true;
     }
 }
+
+//One pass solution, use a variable to keep track of the increasing or decreasing flag between two adjacent elements;
+//if we found it get changed, return false
+class Solution {
+    public boolean isMonotonic(int[] A) {
+        if (A == null || A.length == 0)
+            return false;
+       
+        int comparator = 0;
+        for (int i = 0; i < A.length - 1; i++) {
+            int c = Integer.compare(A[i], A[i + 1]);
+            if (c != 0) {
+                if (comparator != c && comparator != 0) {
+                    return false;
+                }
+                comparator = c;
+            }
+        }
+        
+        return true;
+    }
+    
+    
+}
