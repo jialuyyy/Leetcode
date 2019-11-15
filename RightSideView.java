@@ -34,3 +34,35 @@ class RightSideView {
         return ret;
     }
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ret = new ArrayList<>();
+        
+        helper(ret, root, 0);
+        return ret;
+
+    }
+    
+    private void helper(List<Integer> ret, TreeNode curr, int height) {
+        if (curr == null)
+            return;
+        
+        if (height == ret.size()) {
+            ret.add(curr.val);
+        }
+        
+        helper(ret, curr.right, height + 1);
+        helper(ret, curr.left, height + 1);
+    }
+}
