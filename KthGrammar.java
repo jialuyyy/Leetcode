@@ -21,3 +21,15 @@ class KthGrammar {
         return (~K & 1) ^ kthGrammar(N-1, (K+1)/2);
     }
 }
+
+class KthGrammar {
+    public int kthGrammar(int N, int K) {
+        return Integer.bitCount(K - 1) % 2;
+    }
+}
+
+//0
+//01
+//0110
+//01101001
+//N=4 K=6
