@@ -33,3 +33,21 @@ class KthGrammar {
 //0110
 //01101001
 //N=4 K=6
+
+
+//0
+//0 1
+//0 1 1 0
+class Solution {
+    public int kthGrammar(int N, int K) {
+        if (N == 1) return 0;
+        if (K % 2 == 0) return (kthGrammar(N - 1, K / 2) == 0) ? 1 : 0;
+        else return (kthGrammar(N - 1, (K + 1) / 2) == 0) ? 0 : 1;
+    }
+}
+
+//0
+//01
+//0110
+//01101001
+//N=4 K=6
