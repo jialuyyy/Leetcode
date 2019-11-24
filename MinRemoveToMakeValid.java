@@ -1,6 +1,8 @@
-//we have to make sure the left parenthese matches the number of the right parenthese from beginning to end and the right
-//parenthese matches the left parenthese from end to beginning
-
+//to make a string valid, we need to get rid of all parenthese that do not have a matching pair
+//1 push character ( into the stack
+//2 pop character ( out of the stack when coming accross ) and the stack is not empty, if the stack is empty, means we have 
+//a ) do not have a matching (, so we need to remove it from the string
+//3. in the end, the stack will only contain ( have no matching )
 class MinRemoveToMakeValid {
     public String minRemoveToMakeValid(String s) {
         if (s == null || s.length() == 0)
