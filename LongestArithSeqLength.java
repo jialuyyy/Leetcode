@@ -1,3 +1,7 @@
+
+//dp create a hashmap array with key,value pair difference and arith sequence size to current index i 
+//time complexity : O(n ^ 2)
+//space complexity : O(n)
 class LongestArithSeqLength {
     public int longestArithSeqLength(int[] A) {
         int res = 2;
