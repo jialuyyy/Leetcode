@@ -22,3 +22,38 @@ public class LengthOfLongestSubstring {
         return maxLen;
     }
 }
+
+
+//Input: "abcabcbb"
+//Output: 3 
+//Input: "pwwkew"
+//Output: 3
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0)
+            return 0;
+        
+        int maxLen = 0;
+        
+        int i = 0;
+        int j = 0;
+        
+        int[] map =  new int[256];
+        
+        while (j < s.length()) {
+            map[s.charAt(j)]++;
+            
+            while (map[s.charAt(j)] > 1) {
+                map[s.charAt(i)]--;
+                i++;
+            }
+            
+            maxLen = Math.max(maxLen, j - i + 1);
+            
+            j++;
+        }
+        
+        return maxLen;
+    }
+}
