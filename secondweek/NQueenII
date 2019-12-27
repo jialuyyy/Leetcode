@@ -1,4 +1,9 @@
 //beats 63.48%
+//use an array to mark each solution
+//index -> row
+//value -> col
+//for each row, iterate over the column to check if the (row, col) is valid, place the queen on the board; otherwise check
+//the next col
 public class Solution {
     public static int sum;
     public int totalNQueens(int n) {
