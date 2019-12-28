@@ -102,3 +102,37 @@ public class Solution {
         return max;
     }
 }
+
+
+//O(n ^ 2)
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        if ( heights == null || heights.length == 0)
+            return 0;
+        
+        int maxArea = Integer.MIN_VALUE;
+        for(int i = 0; i < heights.length; i++) {
+            
+            int curHeight = heights[i];
+              
+            //find the left boundary
+            int left = i - 1;
+            int right = i + 1;
+            for (; left >= 0; left--) {
+                if (heights[left] < curHeight) {
+                    break;
+                }
+            }
+            //find the right boundary
+            for (; right < heights.length; right++) {
+                if (heights[right] < curHeight) {
+                    break;
+                }
+            }
+            
+            maxArea = Math.max(maxArea, (right - left - 1) * curHeight);
+        }
+        
+        return maxArea;
+    }
+}
