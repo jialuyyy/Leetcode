@@ -76,3 +76,61 @@ public class WordDictionary {
  * obj.addWord(word);
  * boolean param_2 = obj.search(word);
  */
+
+class WordDictionary {
+
+    /** Initialize your data structure here. */
+    class TrieNode {
+        Map<Character, TrieNode> map = new HashMap<>();
+        boolean isWord = false;
+    }
+    private TrieNode root = null;
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+    
+    /** Adds a word into the data structure. */
+    public void addWord(String word) {
+        if (word == null || word.length() == 0)
+            return;
+        TrieNode cur = root;
+        for(int i = 0; i < word.length(); i++) {
+            if (cur.map.get(word.charAt(i)) == null) {
+                cur.map.put(word.charAt(i), new TrieNode());
+            }
+            
+            cur = cur.map.get(word.charAt(i));
+        }
+        
+        cur.isWord = true;
+    }
+    
+    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+    public boolean search(String word) {
+        return match(word.toCharArray(), 0, root);
+    }
+    
+    private boolean match(char[] ch, int k, TrieNode node) {
+        if (k == ch.length) {
+            return node.isWord;
+        }
+        
+        if (ch[k] != '.') {
+            return node.map.get(ch[k]) != null && match(ch, k + 1, node.map.get(ch[k]));
+        } else {
+            for (char c : node.map.keySet()) {
+                if (match(ch, k + 1, node.map.get(c)))
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+}
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary obj = new WordDictionary();
+ * obj.addWord(word);
+ * boolean param_2 = obj.search(word);
+ */
