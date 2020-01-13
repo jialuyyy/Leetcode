@@ -39,3 +39,39 @@ public class InsertInterval {
         return ret;
     }
 }
+
+
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        
+        int[][] newIntervals = new int[intervals.length + 1][];
+        
+        for (int i = 0; i < intervals.length; i++) {
+            newIntervals[i] = intervals[i];
+        }
+        newIntervals[intervals.length] = newInterval;
+        
+        //sort the list by ascending order of the left elememt
+        Arrays.sort(newIntervals, new Comparator<int[]>(){
+            public int compare(int[] i1, int[] i2) {
+                return i1[0] - i2[0];
+            }
+        });
+        
+        List<int[]> ret = new ArrayList<>();
+        ret.add(newIntervals[0]);
+        
+        for (int i = 1; i < newIntervals.length; i++) {
+            int[] prev = ret.get(ret.size() - 1);
+            int[] cur = newIntervals[i];
+            
+            if (prev[1] >= cur[0]) {
+                prev[1] = Math.max(cur[1], prev[1]);
+            } else {
+                ret.add(cur);
+            }
+        }
+        
+        return ret.toArray(new int[ret.size()][]);
+    }
+}
