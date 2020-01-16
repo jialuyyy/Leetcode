@@ -31,3 +31,34 @@ public class LongestPalindrome {
         }
     }
 }
+
+//dynamic programming
+//o(n^2)
+class LongestPalindrome {
+    private int start = 0;
+    private int maxLen = 0;
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() < 2) {
+            return s;
+        }
+        
+        int n = s.length();
+        String res = null;
+        
+        boolean[][] dp = new boolean[n][n];
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || dp[i + 1][j - 1]);
+                
+                if (dp[i][j] && (res == null || j - i + 1 > res.length())) {
+                    res = s.substring(i, j + 1);
+                }
+            }
+        }
+        
+        return res;
+        
+    }
+    
+  
+}
