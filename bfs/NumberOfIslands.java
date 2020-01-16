@@ -61,3 +61,88 @@ public class NumberOfIslands {
         }
     }
 }
+
+//union find
+class Solution {
+    class UnionFind {
+        private int[] father = null;
+        private int count = 0;
+        public UnionFind(int n) {
+            father = new int[n];
+            for (int i = 0; i < n; i++) {
+                father[i] = i;
+            }
+        }
+        
+        private int find(int x) {
+            if (father[x] == x)
+                return x;
+            
+            return father[x] = find(father[x]);
+        }
+        
+        public void connect(int x, int y) {
+            int father_x = find(x);
+            int father_y = find(y);
+            
+            if (father_x != father_y) {
+                father[father_x] =father[father_y];
+                this.count--;
+            }
+        }
+        
+        public void setCount(int count) {
+            this.count = count;
+        }
+        
+        public int query() {
+            return this.count;
+        }
+        
+    }
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0)
+            return 0;
+        
+        int rows = grid.length;
+        int cols = grid[0].length;
+        
+        int count = 0;
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                //initailly we have the number of 1s connected components
+                if (grid[i][j] == '1') {
+                    count++;
+                }
+            }
+        }
+        UnionFind uf = new UnionFind(rows * cols);
+        uf.setCount(count);
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == '1') {
+                     if (i > 0 && grid[i - 1][j] == '1') {
+                        uf.connect(i * cols + j, (i - 1) * cols + j);
+                     }
+                
+                    if (i < rows - 1 && grid[i + 1][j] == '1') {
+                        uf.connect(i * cols + j, (i + 1) * cols + j);
+                    }
+                
+                    if (j > 0 && grid[i][j - 1] == '1') {
+                        uf.connect(i * cols + j, i * cols + j - 1);
+                    }
+                
+                    if (j < cols - 1 && grid[i][j + 1] == '1') {
+                        uf.connect(i * cols + j, i * cols + j + 1);
+                    }
+                }
+               
+            }
+        }
+        
+        return uf.query();
+    }
+}
