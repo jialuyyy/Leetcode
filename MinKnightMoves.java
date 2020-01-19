@@ -62,3 +62,57 @@ class Solution {
         return dist;
     }
 }
+
+/*
+@Override
+public boolean equals(Object obj) {
+    if (obj == null) return false;
+    if (!(obj instanceof Student))
+        return false;
+    if (obj == this)
+        return true;
+    return this.getId() == ((Student) obj).getId();
+}
+
+public class Student {
+    private int id;
+    private String name;
+    public Student(int id, String name) {
+        this.name = name;
+        this.id = id;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+HashSet stores its elements in memory buckets. Each bucket is linked to a particular hash code. When calling students.add(alex1), Java stores alex1 inside a bucket and links it to the value of alex1.hashcode(). Now any time an element with the same hash code is inserted into the set, it will just replace alex1. However, since alex2 has a different hash code, it will be stored in a separate bucket and will be considered a totally different object.
+
+Now when HashSet searches for an element inside it, it first generates the element's hash code and looks for a bucket which corresponds to this hash code.
+
+Here comes the importance of overriding hashcode(), so let's override it in Student and set it to be equal to the ID so that students who have the same ID are stored in the same bucket:
+
+@Override
+public int hashCode() {
+    return id;
+}
+
+
+Conclusion
+In order to achieve a fully working custom equality mechanism, it is mandatory to override hashcode() each time you override equals(). Follow the tips below and you'll never have leaks in your custom equality mechanism:
+
+If two objects are equal, they MUST have the same hash code.
+If two objects have the same hash code, it doesn't mean that they are equal.
+Overriding equals() alone will make your business fail with hashing data structures like: HashSet, HashMap, HashTable ... etc.
+Overriding hashcode() alone doesn't force Java to ignore memory addresses when comparing two objects.
+
+*/
