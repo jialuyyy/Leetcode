@@ -1,4 +1,4 @@
-class MinKnightMoves {
+class Solution {
     
     class Point {
         private int x;
@@ -21,6 +21,10 @@ class MinKnightMoves {
         Set<String> visited = new HashSet<>();
         Point p = new Point(0, 0);
         queue.offer(p);
+        //have to store strings in the hashset instead of object new Point(x, y)
+        //as default hashcode and equals in java for object will be comparing location in memory
+        //for two new Point(x, y) it will be different only if you override the equals and hashcode
+        //but for strings, it is already overrided
         visited.add("0,0");
         
         int dist = 0;
@@ -37,6 +41,8 @@ class MinKnightMoves {
                     int index_y = cur.y + dy[k];
                     
                     //if out of bound, continue
+                    //(2, -1) -> (1, 1)
+                    //we can not get rid of all the negative values
                     if (index_x < -1 || index_y < -1 || index_x >= 310 || index_y >= 310)
                         continue;
                     
