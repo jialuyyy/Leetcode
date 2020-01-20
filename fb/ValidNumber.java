@@ -60,3 +60,56 @@ public class ValidNumber {
         return false;
     }
 }
+
+class isNumber {
+    public boolean isNumber(String s) {
+        
+        if (s == null)
+            return false;
+        int i = 0;
+        //多加一位 avoid overflow
+        s = s.trim() + " ";
+        
+        char[] sc = s.toCharArray();
+        int len = s.length() - 1;
+        
+        if (sc[i] == '+' || sc[i] == '-')
+            i++;
+        
+        int nDigit = 0;
+        int nPoint = 0;
+        //浮点  至少一个数字 至多一个点
+        while (Character.isDigit(sc[i]) || sc[i] == '.') {
+            if (Character.isDigit(sc[i])) {
+                nDigit++;
+            } else {
+                nPoint++;
+            }
+            i++;
+        }
+        
+        if (nDigit <= 0 || nPoint > 1)
+            return false;
+        
+        if (sc[i] == 'e') {
+            i++;
+            if (sc[i] == '+' || sc[i] == '-') {
+                i++;
+            }
+            
+            if (i == len) {
+                return false;
+            }
+            
+            for (; i < len; i++) {
+                if (!Character.isDigit(sc[i])) {
+                    return false;
+                }
+            }
+        }
+        
+        
+        return i == len;
+        
+    }
+}
