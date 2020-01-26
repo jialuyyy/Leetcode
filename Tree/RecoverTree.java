@@ -46,3 +46,46 @@ public class RecoverTree {
         helper(root.right, list);
     }
 }
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class RecoverTree {
+    private TreeNode firstElement = null;
+    private TreeNode secondElement = null;
+    
+    private TreeNode prevElement = null;
+    
+    public void recoverTree(TreeNode root) {
+        traverse(root);
+        
+        int temp = firstElement.val;
+        firstElement.val = secondElement.val;
+        secondElement.val = temp;
+    }
+    
+    private void traverse(TreeNode root) {
+        if (root == null)
+            return;
+        
+        traverse(root.left);
+        
+        if (prevElement != null && firstElement == null && prevElement.val >= root.val) {
+            firstElement = prevElement;
+        }
+        
+        if (prevElement != null && firstElement != null && prevElement.val >= root.val) {
+            secondElement = root;
+        }
+        
+        prevElement = root;
+        traverse(root.right);
+    }
+}
