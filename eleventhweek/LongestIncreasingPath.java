@@ -53,7 +53,7 @@ public class LongestIncreasingPath {
     }
 }
 
-class Solution {
+class LongestIncreasingPath {
     private int[] dx = {0, 0, -1, 1};
     private int[] dy = {-1, 1, 0, 0};
     public int longestIncreasingPath(int[][] matrix) {
