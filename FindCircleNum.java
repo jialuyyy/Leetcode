@@ -28,3 +28,36 @@ class FindCircleNum {
         }
     }
 }
+class FindCircleNum {
+    public int findCircleNum(int[][] M) {
+        if (M == null || M.length == 0 || M[0].length == 0)
+            return 0;
+        
+        int count = 0;
+        int[] visited = new int[M.length];
+        Deque<Integer> queue = new ArrayDeque<>();
+        
+        for (int i = 0; i < M.length; i++) {
+            if (visited[i] == 0) {
+                queue.offer(i);
+                visited[i] = 1;
+                while (!queue.isEmpty()) {
+                    int cur = queue.poll();
+                    
+                    
+                    for (int j = 0; j < M.length; j++) {
+                        if (M[cur][j] == 1 && visited[j] == 0) {
+                            queue.offer(j);
+                            visited[cur] = 1;
+                        }
+                    }
+                }
+                count++;
+            }
+        }
+
+        return count;
+    }
+    
+
+}
