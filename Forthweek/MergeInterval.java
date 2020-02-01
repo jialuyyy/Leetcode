@@ -50,3 +50,32 @@ public class MergeInterval {
         return ret;
     }
 }
+
+
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals == null || intervals.length <= 1)
+            return intervals;
+        
+        Arrays.sort(intervals, new Comparator<int[]>(){
+            public int compare(int[] i1, int[] i2) {
+                return i1[0] - i2[0];
+            }
+        });
+        
+        List<int[]> ret = new ArrayList<>();
+        ret.add(intervals[0]);
+        
+        for (int i = 1; i < intervals.length; i++) {
+            int[] prev = ret.get(ret.size() - 1);
+            int[] cur = intervals[i];
+            
+            if (prev[1] >= cur[0]) {
+                prev[1] = Math.max(prev[1], cur[1]);
+            } else {
+                ret.add(cur);
+            }
+        }
+        return ret.toArray(new int[ret.size()][]);   
+    }
+}
