@@ -47,3 +47,41 @@ class WordsAbbreviation {
         return ans;
     }
 }
+
+class ValidWordAbbr {
+    //map to keep abbreviation and a set of the words has the abbreviation
+    Map<String, Integer> countAbbr = null;
+    Map<String, Integer> countWord = null;
+    public ValidWordAbbr(String[] dictionary) {
+        countAbbr = new HashMap<>();
+        countWord = new HashMap<>();
+        for (String word : dictionary) {
+            String abbr = "";
+            if (word.length() <= 2) {
+                abbr = word;
+            } else {
+                abbr = "" + word.charAt(0) + (word.length() - 2) + word.charAt(word.length() - 1);
+            }
+            
+            countAbbr.put(abbr, countAbbr.getOrDefault(abbr, 0) + 1);
+            countWord.put(word, countWord.getOrDefault(word, 0) + 1);
+        }
+    }
+    
+    public boolean isUnique(String word) {
+        String abbr = "";
+        if (word.length() <= 2) {
+            abbr = word;
+        } else {
+            abbr = "" + word.charAt(0) + (word.length() - 2) + word.charAt(word.length() - 1);
+        }
+            
+        return countAbbr.get(abbr) == countWord.get(word);
+    }
+}
+
+/**
+ * Your ValidWordAbbr object will be instantiated and called as such:
+ * ValidWordAbbr obj = new ValidWordAbbr(dictionary);
+ * boolean param_1 = obj.isUnique(word);
+ */
