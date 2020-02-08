@@ -35,3 +35,34 @@ class FindSecondMinimumValue {
         }
     }
 }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class FindSecondMinimumValue {
+    private int min1 = 0;
+    private long ans = Long.MAX_VALUE;
+    public int findSecondMinimumValue(TreeNode root) {
+        min1 = root.val;
+        dfs(root);
+        return ans == Long.MAX_VALUE ? -1 : (int)ans;
+    }
+    
+    
+    private void dfs(TreeNode root) {
+        if (root != null) {
+            if (min1 < root.val && root.val < ans) {
+                ans = root.val;
+            } else if (root.val == min1) {
+                dfs(root.left);
+                dfs(root.right);
+            }
+        }
+    }
+}
