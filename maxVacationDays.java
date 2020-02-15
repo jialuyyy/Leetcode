@@ -55,3 +55,37 @@ class MaxVacationDays {
         return res;
     }
 }
+
+//use dp, dp[j][i] means on week i and at city j, what is the maximum vacation we should gain
+//and get the meaximum from dp[0][0] to dp[N - 1][0], need to consider that if flight[0][i] == 1 at the end
+//if not, have to only think about dp[0][0]
+class MaxVacationDays {
+    
+    
+    public int maxVacationDays(int[][] flights, int[][] days) {
+       int[][] dp = new int[flights.length][days[0].length];
+        
+        for (int i = days[0].length - 1; i >= 0; i--) {
+            for (int j = 0; j < days.length; j++) {
+                //week i at city j the max days
+                dp[j][i] = days[j][i];
+                
+                for (int p = 0; p < days.length; p++) {
+                    if ((j == p || flights[j][p] == 1) && i < days[0].length - 1) {
+                        dp[j][i] = Math.max(dp[j][i], dp[p][i + 1] + days[j][i]);
+                    }
+                }
+            }
+        }
+        
+        int res = 0;
+        for (int i = 0; i < days.length; i++) {
+            if (i == 0 || flights[0][i] == 1)
+                res = Math.max(res, dp[i][0]);
+        }
+        
+        return res;
+    }
+    
+    
+}
