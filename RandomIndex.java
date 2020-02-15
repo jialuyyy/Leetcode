@@ -78,3 +78,28 @@ class Solution {
  * Solution obj = new Solution(w);
  * int param_1 = obj.pickIndex();
  */
+
+//use a treemap
+/*
+[1,2,3]
+1 -> 0
+3 -> 1
+6 -> 2
+generate a random value between 0 to 6 and get the highkey and the value would be the answer
+*/
+class RandomIndex {
+    int cnt = 0;
+    TreeMap<Integer, Integer> map = new TreeMap<>();
+    Random r = new Random();
+    public Solution(int[] w) {
+        for (int idx = 0; idx < w.length; idx++) {
+            cnt += w[idx];
+            map.put(cnt, idx);
+        }
+    }
+    
+    public int pickIndex() {
+        int key = map.higherKey(r.nextInt(cnt));
+        return map.get(key);
+    }
+}
