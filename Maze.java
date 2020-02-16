@@ -47,3 +47,49 @@ class Maze {
         return maze[row][col] != 1;
     }
 }
+
+class Solution {
+    private int[] dx = {0, 0, -1, 1};
+    private int[] dy = {-1, 1, 0, 0};
+    public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+        if (maze == null || maze.length == 0 || maze[0].length == 0)
+            return false;
+        
+        if (start[0] == destination[0] && start[1] == destination[1])
+            return true;
+        
+        boolean[][] visited = new boolean[maze.length][maze[0].length];
+        
+        Deque<int[]> queue = new ArrayDeque<>();
+        
+        queue.offer(new int[]{start[0], start[1]});
+        visited[start[0]][start[1]] = true;
+        
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            
+            if (cur[0] == destination[0] && cur[1] == destination[1])
+                return true;
+            
+            for (int k = 0; k < 4; k++) {
+                int index_x = cur[0] + dx[k];
+                int index_y = cur[1] + dy[k];
+                
+                while (index_x >= 0 && index_x < maze.length && index_y >= 0 && index_y < maze[0].length && maze[index_x][index_y] != 1) {
+                    index_x += dx[k];
+                    index_y += dy[k];
+                }
+                index_x -= dx[k];
+                index_y -= dy[k];
+                
+                if (!visited[index_x][index_y]) {
+                    queue.offer(new int[]{index_x, index_y});
+                    visited[index_x][index_y] = true;
+                }
+            }
+        }
+        
+        return false;
+        
+    }
+}
