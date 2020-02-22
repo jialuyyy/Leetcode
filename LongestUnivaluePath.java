@@ -49,3 +49,43 @@ class LongestUnivaluePath {
         return new ResultType(path, Math.max(leftPath, rightPath));
     }
 }
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class LongestUnivaluePath {
+    private int ans = 0;
+    
+    public int longestUnivaluePath(TreeNode root) {
+        ans = 0;
+        helper(root);
+        return ans;
+    }
+    
+    public int helper(TreeNode node) {
+        if (node == null)
+            return 0;
+        int left = helper(node.left);
+        int right = helper(node.right);
+        
+        int leftPath = 0;
+        int rightPath = 0;
+        
+        if (node.left != null && node.left.val == node.val) {
+            leftPath += left + 1;
+        }
+        
+        if (node.right != null && node.right.val == node.val) {
+            rightPath += right + 1;
+        }
+        
+        ans = Math.max(ans, leftPath + rightPath);
+        return Math.max(leftPath, rightPath);
+    }
+}
